@@ -19,12 +19,13 @@
         </div>
         {% if messages %}
             {% for message in messages %}
-                <p class="mensagem" style="color: red;">{{ message }}</p>
+                <p class="text-danger text-center">{{ message }}</p>
             {% endfor %}
         {% endif %}
-        <input type="submit" id = "submit-button" class="btn btn-primary btn-user btn-block">
+        <input type="submit" id = "submit-button" class="btn btn-primary btn-user btn-block" value="Entrar">
     </form>
-    <div class="text-center"><a class="small" href="{% url 'url_cadastro' %}">Cadastre-se</a></div>
+    <hr>
+    <div class="text-center"><a class="small" href="register.html">Não possui uma conta? Cadastre-se aqui!</a></div>
 </body>
 </html>
 {% endblock %}

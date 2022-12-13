@@ -8,7 +8,6 @@ def login_user(request):
     if request.user.is_authenticated:
         return redirect('/inicio')
     if request.method == "POST":
-        print("oi")
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
