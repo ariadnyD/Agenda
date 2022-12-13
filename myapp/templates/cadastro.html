@@ -1,3 +1,5 @@
+{% extends 'layouts/login.html' %}
+{% block conteudo %}
 {% load static %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
@@ -6,11 +8,14 @@
         <title>Agenda | Cadastro</title>
     </head>
     <body>
-        <h1>Cadastro</h1>
-        <form method="post">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Cadastro</h1>
+        </div>
+        <form method="post" class="user">
             {% csrf_token %}
             {{ formUsuario|crispy }}
-            <button type="submit">Registrar</button>
+            <a href="{% url 'url_login' %}" class="btn btn-primary btn-user btn-block"> Registrar conta </a>
         </form>
     </body>
 </html>
+{% endblock %}

@@ -1,31 +1,30 @@
-<!DOCTYPE html>
+{% extends 'layouts/login.html' %}
+{% block conteudo %}
+{% load static %}
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda | Login</title>
 </head>
-<body>
-    <h1>Login</h1>
-    <form method="post">
+<body class="">
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+    </div>
+    <form method="post" class="user">
         {% csrf_token %}
-        <label>
-            <span>Email ou usuário</span>
-            <input type="text" id="email" name="username" required>
-        </label>
-        <br>
-        <label for="password">
-            <span>Senha</span>
-            <input type="password" id="password" name="password" required>
-        </label>
+        <div class="form-group">
+            <input type="text" id="email" name="username" class="form-control form-control-user" placeholder="Email ou usuario" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" name="password" class="form-control form-control-user" placeholder="Senha" required>
+        </div>
         {% if messages %}
             {% for message in messages %}
                 <p class="mensagem" style="color: red;">{{ message }}</p>
             {% endfor %}
         {% endif %}
-        <input type="submit" id = "submit-button">
+        <input type="submit" id = "submit-button" class="btn btn-primary btn-user btn-block">
     </form>
-    <a href="{% url 'url_cadastro' %}">Cadastre-se</a>
+    <div class="text-center"><a class="small" href="{% url 'url_cadastro' %}">Cadastre-se</a></div>
 </body>
 </html>
+{% endblock %}
