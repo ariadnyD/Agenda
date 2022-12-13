@@ -1,0 +1,16 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agenda | Cadastro</title>
+    </head>
+    <body>
+        <h1>Cadastro</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ formUsuario|crispy }}
+            <button type="submit">Registrar</button>
+        </form>
+    </body>
+</html>
