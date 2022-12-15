@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from myapp.forms import UserCreationForm
+from myapp.forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from myapp.models import *
 
 def login_user(request):
     if request.user.is_authenticated:
@@ -44,4 +45,14 @@ def index(request):
     return render(request, "index.html")
 
 def inicio(request):
-    return render(request, "inicio.html")
+    tarefas = Tarefa.objects.all()
+    parametros = {"tarefas": tarefas}
+    return render(request, "inicio.html", parametros)
+
+def formTarefa(request):
+    formTarefa = TarefaForm(request.POST or None)
+    if formTarefa.is_valid():
+        formTarefa.save()
+        return redirect("/formTarefa.html")
+    pacote = {"formTarefa": formTarefa}
+    return render(request, "formTarefa.html", pacote)

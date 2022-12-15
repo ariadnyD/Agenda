@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agenda | Adicionar Tarefa</title>
+</head>
+
+<body>
+    <form method="post" class="w-75">
+        {% csrf_token %}
+        {{ formTarefa|crispy }}
+        <div class="w-100 text-center">
+            <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
+        </div>
+    </form>
+</body>
+
+</html>
