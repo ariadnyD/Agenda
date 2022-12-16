@@ -46,13 +46,27 @@ def index(request):
 
 def inicio(request):
     tarefas = Tarefa.objects.all()
-    parametros = {"tarefas": tarefas}
-    return render(request, "inicio.html", parametros)
+    pacote = {"tarefas": tarefas}
+    return render(request, "inicio.html", pacote)
 
 def formTarefa(request):
     formTarefa = TarefaForm(request.POST or None)
     if formTarefa.is_valid():
         formTarefa.save()
-        return redirect("/formTarefa.html")
+        return redirect("/inicio")
     pacote = {"formTarefa": formTarefa}
     return render(request, "formTarefa.html", pacote)
+
+def updateTarefa(request, id):
+    tarefaid = Tarefa.objects.get(pk=id)
+    formTarefa = TarefaForm(request.POST or None, instance=tarefaid)
+    if formTarefa.is_valid():
+        formTarefa.save()
+        return redirect("/inicio")
+    pacote = {"formTarefa": formTarefa}
+    return render(request, "formTarefa.html", pacote) 
+
+def deleteTarefa (request, id):
+    tarefaid = Tarefa.objects.get(pk=id)
+    tarefaid.delete()
+    return redirect("/inicio")

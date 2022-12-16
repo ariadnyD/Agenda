@@ -11,9 +11,27 @@
     <table>
         <tr>
             <th>Nome</th>
-            <th></th>
+            <th>Descrição</th>
+            <th>Data para Conclusão</th>
+            <th>Status</th>
+            <th>Matéria</th>
         </tr>
+        {% for i in tarefas%}
+        <tr>
+            <td>{{ i.nome }}</td>
+            <td>{{ i.descricao }}</td>
+            <td>{{ i.dataConclusao }}</td>
+            <td>{{ i.status }}</td>
+            <td>{{ i.materia }}</td>
+            <td>
+                <a href="{% url 'url_updateTarefa' i.codigo %}"><button> Editar </button></a>
+                <a href="{% url 'url_deleteTarefa' i.codigo %}"><button> Excluir </button></a>
+            </td>
+        </tr>
+        {% endfor %}
     </table>
+    <a href="{% url 'url_formTarefa' %}">Adicionar tarefa</a>
+    <br>
     <a href="{% url 'url_sair' %}">fazer logoff</a>
 </body>
 </html>

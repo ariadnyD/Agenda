@@ -13,6 +13,7 @@ class Materia(models.Model):
         return (self.nome)
 
 class Tarefa(models.Model):
+    codigo = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     descricao = models.CharField(max_length=280)
     dataConclusao = models.DateField()
