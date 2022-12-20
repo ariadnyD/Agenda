@@ -1,20 +1,50 @@
+{% extends 'layouts/agenda.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+{% block titulo %}
+    {%if update == True %}
+    Agenda | Editar Tarefa 
+    {% else %}
+    Agenda | Nova Tarefa
+    {% endif %}
+{% endblock %}
+{% block h1 %}
+    {%if update == True %}
+    Editar Tarefa 
+    {% else %}
+    Nova Tarefa
+    {% endif %}
+{% endblock %}
+{% block conteudo %}
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Agenda | Adicionar Tarefa</title>
-</head>
-
 <body>
-    <h1> Tarefa: </h1>
-    <form method="post" class="w-75">
-        {% csrf_token %}
-        {{ formTarefa|crispy }}
-        <div class="w-100 text-center">
-            <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Informações da tarefa</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <form method="post" class="w-100">
+                        {% csrf_token %}
+                        {{ formTarefa|crispy }}
+                        <div class="w-100 text-center">
+                            <button type="submit" class="w-50 mt-1 btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
-</body>
+    </div>
 
+
+
+
+
+    <!-- <h1> Tarefa: </h1>
+     -->
+</body>
 </html>
+{% endblock %}

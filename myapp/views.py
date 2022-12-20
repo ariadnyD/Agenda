@@ -58,15 +58,19 @@ def formTarefa(request):
     return render(request, "formTarefa.html", pacote)
 
 def updateTarefa(request, id):
+    update =True
     tarefaid = Tarefa.objects.get(pk=id)
     formTarefa = TarefaForm(request.POST or None, instance=tarefaid)
     if formTarefa.is_valid():
         formTarefa.save()
         return redirect("/inicio")
-    pacote = {"formTarefa": formTarefa}
+    pacote = {"formTarefa": formTarefa, "update": update}
     return render(request, "formTarefa.html", pacote) 
 
-def deleteTarefa (request, id):
+def deleteTarefa(request, id):
     tarefaid = Tarefa.objects.get(pk=id)
     tarefaid.delete()
     return redirect("/inicio")
+
+def layout(request):
+    return render(request, 'layouts/agenda.html')

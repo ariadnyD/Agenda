@@ -15,7 +15,7 @@ class Materia(models.Model):
 class Tarefa(models.Model):
     codigo = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
-    descricao = models.CharField(max_length=280)
+    descricao = models.TextField(max_length=280)
     dataConclusao = models.DateField()
     status = models.ForeignKey(Status_das_tarefas, on_delete=models.CASCADE)
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE)

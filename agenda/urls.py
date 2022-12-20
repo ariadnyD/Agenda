@@ -6,6 +6,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', index, name="url_index"),
+    path('layout/', layout, name="url_layout"),
+
 
     path('login/', login_user, name="url_login"),
     path('sair/', sair, name="url_sair"),
