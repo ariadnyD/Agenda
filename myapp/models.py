@@ -2,6 +2,7 @@ from django.db import models
 
 class Materia(models.Model):
     nome = models.CharField(max_length=50)
+    horario = models.CharField(max_length=50)
 
     def __str__(self):
         return (self.nome)

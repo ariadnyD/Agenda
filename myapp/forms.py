@@ -49,4 +49,4 @@ class TarefaModelForm(ModelForm):
 class MateriaForm(ModelForm):
     class Meta:
         model = Materia 
-        fields = ["nome"]
+        fields = ["nome", "horario"]

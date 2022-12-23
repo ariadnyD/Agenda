@@ -18,4 +18,7 @@ urlpatterns = [
     path('formTarefa/', formTarefa, name="url_formTarefa"),
     path('updateTarefa/<int:id>/', updateTarefa, name="url_updateTarefa"),
     path('deleteTarefa/<int:id>/', deleteTarefa, name="url_deleteTarefa"),
+
+    path('showMateria/', showMateria, name="url_showMateria"),
+    path('formMateria/', formMateria, name="url_formMateria"),
 ]

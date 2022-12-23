@@ -72,5 +72,18 @@ def deleteTarefa(request, id):
     tarefaid.delete()
     return redirect("/inicio")
 
+def showMateria(request):
+    materias = Materia.objects.all()
+    pacote = {"materias": materias}
+    return render(request, "materia.html", pacote)
+
+def formMateria(request):
+    formMateria = MateriaForm(request.POST or None)
+    if formMateria.is_valid():
+        formMateria.save()
+        return redirect("/showMateria")
+    pacote = {"formMateria": formMateria}
+    return render(request, "formMateria.html", pacote)
+
 def layout(request):
     return render(request, 'layouts/agenda.html')
