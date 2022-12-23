@@ -2,10 +2,18 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block titulo %}Agenda | Matérias {% endblock %}
-{% block h1 %}Aqui está sua agenda! 📔<br>{% endblock %}
 {% block conteudo %}
 <!DOCTYPE html>
 <body>
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Suas Matérias: 📔<br></h1>
+            <a href="{% url 'url_formMateria' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"> Nova Matéria</i>&nbsp;</a>
+        </div>
+
+    </div>
     <section class="category-section">
         <div id="content-wrapper" class="d-flex flex-column">
             <div class="content">
@@ -17,11 +25,15 @@
                                     <thead>
                                         <th>Matéria</th>
                                         <th>Horário de aula</th>
+                                        <th> </th>
                                     </thead>
                                     {% for i in materias%}
                                     <tr>
                                         <td>{{ i.nome }}</td>
                                         <td>{{ i.horario }}</td>
+                                        <td>
+                                            <a href="{% url 'url_deleteMateria' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-danger text-white"><i class="fas fa-trash btn-lg"></i></button></a>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </table> 

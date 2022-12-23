@@ -21,4 +21,5 @@ urlpatterns = [
 
     path('showMateria/', showMateria, name="url_showMateria"),
     path('formMateria/', formMateria, name="url_formMateria"),
+    path('deleteMateria/<int:id>/', deleteMateria, name="url_deleteMateria"),
 ]

@@ -85,5 +85,10 @@ def formMateria(request):
     pacote = {"formMateria": formMateria}
     return render(request, "formMateria.html", pacote)
 
+def deleteMateria(request, id):
+    materiaid = Materia.objects.get(pk=id)
+    materiaid.delete()
+    return redirect("/showMateria")
+
 def layout(request):
     return render(request, 'layouts/agenda.html')

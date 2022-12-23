@@ -2,10 +2,18 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block titulo %}Agenda | Início{% endblock %}
-{% block h1 %}Aqui está sua agenda! 📔<br>{% endblock %}
 {% block conteudo %}
 <!DOCTYPE html>
 <body>
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Aqui está sua agenda! 📔<br></h1>
+            <a href="{% url 'url_formTarefa' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"> Nova Tarefa</i>&nbsp;</a>
+        </div>
+
+    </div>
     <section class="category-section">
         <div id="content-wrapper" class="d-flex flex-column">
             <div class="content">

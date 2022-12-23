@@ -1,6 +1,7 @@
 from django.db import models
 
 class Materia(models.Model):
+    codigo = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=50)
     horario = models.CharField(max_length=50)
 
