@@ -50,17 +50,27 @@ def inicio(request):
     return render(request, "inicio.html", pacote)
 
 def formTarefa(request):
-    formTarefa = TarefaForm(request.POST or None)
-    if formTarefa.is_valid():
-        formTarefa.save()
-        return redirect("/inicio")
+    if request.method == "POST":
+        formTarefa = TarefaForm(request.POST, request.FILES)
+        if formTarefa.is_valid():
+            obj = Tarefa.objects.create(
+                nome = formTarefa.cleaned_data.get("nome"),
+                descricao = formTarefa.cleaned_data.get("descricao"),
+                dataConclusao = formTarefa.cleaned_data.get("dataConclusao"),
+                status = formTarefa.cleaned_data.get("status"),
+                materia = formTarefa.cleaned_data.get("materia"),
+            )
+            obj.save()
+            return redirect("/inicio")
+    else:
+        formTarefa = TarefaForm()
     pacote = {"formTarefa": formTarefa}
     return render(request, "formTarefa.html", pacote)
 
 def updateTarefa(request, id):
     update =True
     tarefaid = Tarefa.objects.get(pk=id)
-    formTarefa = TarefaForm(request.POST or None, instance=tarefaid)
+    formTarefa = TarefaModelForm(request.POST or None, instance=tarefaid)
     if formTarefa.is_valid():
         formTarefa.save()
         return redirect("/inicio")
