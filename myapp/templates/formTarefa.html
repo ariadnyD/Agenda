@@ -23,7 +23,7 @@
         <div class="col-xl-8 col-lg-7">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800"><br></h1>
-                <a href="{% url 'url_formMateria' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"> Nova Matéria</i>&nbsp;</a>
+                <a href="{% url 'url_formMateria' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Nova Matéria&nbsp;</a>
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-center">
@@ -31,7 +31,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form method="post" class="w-100">
+                    <form method="post" class="w-100" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ formTarefa|crispy }}
                         <div class="w-100 text-center">
@@ -42,13 +42,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-    <!-- <h1> Tarefa: </h1>
-     -->
 </body>
 </html>
 {% endblock %}

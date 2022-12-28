@@ -59,6 +59,7 @@ def formTarefa(request):
                 dataConclusao = formTarefa.cleaned_data.get("dataConclusao"),
                 status = formTarefa.cleaned_data.get("status"),
                 materia = formTarefa.cleaned_data.get("materia"),
+                arquivo = formTarefa.cleaned_data.get("arquivo"),
             )
             obj.save()
             return redirect("/inicio")
@@ -70,12 +71,17 @@ def formTarefa(request):
 def updateTarefa(request, id):
     update =True
     tarefaid = Tarefa.objects.get(pk=id)
-    formTarefa = TarefaModelForm(request.POST or None, instance=tarefaid)
+    formTarefa = TarefaModelForm(request.POST or None, request.FILES or None, instance=tarefaid)
     if formTarefa.is_valid():
         formTarefa.save()
         return redirect("/inicio")
     pacote = {"formTarefa": formTarefa, "update": update}
-    return render(request, "formTarefa.html", pacote) 
+    return render(request, "formTarefa.html", pacote)
+
+def detTarefa(request, id):
+    tarefaid = Tarefa.objects.get(pk=id)
+    pacote = {"tarefa": tarefaid}
+    return render(request, "detTarefa.html", pacote)
 
 def deleteTarefa(request, id):
     tarefaid = Tarefa.objects.get(pk=id)

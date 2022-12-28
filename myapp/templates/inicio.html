@@ -10,7 +10,7 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Aqui está sua agenda! 📔<br></h1>
-            <a href="{% url 'url_formTarefa' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"> Nova Tarefa</i>&nbsp;</a>
+            <a href="{% url 'url_formTarefa' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Nova Tarefa&nbsp;</a>
         </div>
 
     </div>
@@ -38,6 +38,7 @@
                                         <td>{{ i.status }}</td>
                                         <td>{{ i.materia }}</td>
                                         <td>
+                                            <a href="{% url 'url_detTarefa' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-secondary text-white"><i class="fas fa-info btn-lg"></i></button></a>
                                             <a href="{% url 'url_updateTarefa' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-primary text-white"><i class="fas fa-pen btn-lg"></i></button></a>
                                             <a href="{% url 'url_deleteTarefa' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-danger text-white"><i class="fas fa-trash btn-lg"></i></button></a>
                                         </td>

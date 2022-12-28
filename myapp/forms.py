@@ -28,22 +28,24 @@ status_choice=(
 )
 class TarefaForm(django_forms.Form):
     nome = django_forms.CharField(max_length=100, label="Dê um nome a sua tarefa:")
-    descricao = django_forms.CharField(max_length=280, label="Descrição:")
+    descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=280, label="Descrição:")
     dataConclusao = django_forms.DateField(label="Data para conclusão da tarefa:", required=False, widget=DateInput())
     status = django_forms.ChoiceField(choices=status_choice)
-    materia = django_forms.ModelChoiceField(queryset=Materia.objects.all(), label="Matéria")
+    materia = django_forms.ModelChoiceField(queryset=Materia.objects.all(), label="Matéria", required=False)
+    arquivo = django_forms.FileField(label="Arquivo", required=False)
 
 class TarefaModelForm(ModelForm):
     class Meta:
         model = Tarefa 
-        fields = ["nome", "descricao", "dataConclusao", "status", "materia"]
+        fields = ["nome", "descricao", "dataConclusao", "status", "materia", "arquivo"]
 
         labels = {
             "nome": "Dê um nome a sua tarefa:",
             "descricao": "Descrição:",
             "dataConclusao":"Data para conclusão da tarefa:",
             "status": "Status:",
-            "materia": "Matéria"
+            "materia": "Matéria",
+            "arquivo": "Arquivo",
         }
 
 class MateriaForm(ModelForm):
