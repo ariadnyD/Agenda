@@ -9,48 +9,100 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Aqui está sua agenda! 📔<br></h1>
+            <h1 class="h3 mb-0 text-gray-800">Aqui estão suas tarefas: 📔<br></h1>
             <a href="{% url 'url_formTarefa' %}" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Nova Tarefa&nbsp;</a>
         </div>
-
-    </div>
-    <section class="category-section">
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="card shadow mb-4">
+        <!-- Content Row -->
+        <div class="row"> 
+            <!-- AFA Column -->
+            <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-warning"> A fazer </h6>
+                    </div>
+                    {% for i in afa %}
                         <div class="card-body">
-                            <div class="table-responsive"> 
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <th>Tarefa</th>
-                                        <th>Descrição</th>
-                                        <th>Data para Conclusão</th>
-                                        <th>Status</th>
-                                        <th>Matéria</th>
-                                        <th>Ações</th>
-                                    </thead>
-                                    {% for i in tarefas%}
-                                    <tr>
-                                        <td>{{ i.nome }}</td>
-                                        <td>{{ i.descricao }}</td>
-                                        <td>{{ i.dataConclusao }}</td>
-                                        <td>{{ i.status }}</td>
-                                        <td>{{ i.materia }}</td>
-                                        <td>
-                                            <a href="{% url 'url_detTarefa' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-secondary text-white"><i class="fas fa-info btn-lg"></i></button></a>
-                                            <a href="{% url 'url_updateTarefa' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-primary text-white"><i class="fas fa-pen btn-lg"></i></button></a>
-                                            <a href="{% url 'url_deleteTarefa' i.codigo %}" class="text-decoration-none"><button class="btn btn-circle btn-danger text-white"><i class="fas fa-trash btn-lg"></i></button></a>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </table> 
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{ i.materia }}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- AND Column -->
+            <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary"> Em andamento </h6>
                     </div>
+                    {% for i in and %}
+                        <div class="card-body">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{ i.materia }}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- FIN Column -->
+            <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-success"> Finalizadas </h6>
+                    </div>
+                    {% for i in fin%}
+                        <div class="card-body">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{ i.materia }}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-    </section>
+
+    </div>
 </body>
 {% endblock %}

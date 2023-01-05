@@ -45,8 +45,14 @@ def index(request):
     return render(request, "index.html")
 
 def inicio(request):
-    tarefas = Tarefa.objects.all()
-    pacote = {"tarefas": tarefas}
+    afazer = Tarefa.objects.filter(status = "AFA").order_by('dataConclusao')
+    andamento = Tarefa.objects.filter(status = "AND").order_by('dataConclusao')
+    finalizada = Tarefa.objects.filter(status = "FIN").order_by('dataConclusao')
+    pacote = {
+        "afa": afazer,
+        "and": andamento,
+        "fin": finalizada,
+    }
     return render(request, "inicio.html", pacote)
 
 def formTarefa(request):
