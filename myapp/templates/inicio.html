@@ -15,42 +15,14 @@
         <!-- Content Row -->
         <div class="row"> 
             <!-- AFA Column -->
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                       <h6 class="m-0 font-weight-bold text-warning"> A fazer </h6>
                     </div>
-                    {% for i in afa %}
-                        <div class="card-body">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
-                                            </div>
-                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
-                                                {{ i.materia }}
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <!-- AND Column -->
-            <div class="col-lg-4">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary"> Em andamento </h6>
-                    </div>
-                    {% for i in and %}
-                        <div class="card-body">
+                    <div class="body">
+                        {% for i in and %}
+                        <div style="padding: 0.4rem;">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -61,19 +33,82 @@
                                             <div class="h6 mb-0 font-weight-bold text-gray-800">
                                                 {{ i.materia }}
                                             </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            <div>
+                                                <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- AFA Column -->
+            <div class="col-lg-3">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-warning"> A fazer </h6>
+                    </div>
+                    <div class="body">
+                        {% for i in afa %}
+                        <div style="padding: 0.4rem;">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{ i.materia }}
+                                            </div>
+                                            <div>
+                                                <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- AND Column -->
+            <div class="col-lg-3">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary"> Em andamento </h6>
+                    </div>
+                    <div class="body">
+                        {% for i in and %}
+                        <div style="padding: 0.4rem;">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{ i.materia }}
+                                            </div>
+                                            <div>
+                                                <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <!-- FIN Column -->
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-success"> Finalizadas </h6>
@@ -90,9 +125,9 @@
                                             <div class="h6 mb-0 font-weight-bold text-gray-800">
                                                 {{ i.materia }}
                                             </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            <div>
+                                                <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
