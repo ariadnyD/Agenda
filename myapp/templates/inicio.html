@@ -18,12 +18,14 @@
             <div class="col-lg-3">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-warning"> A fazer </h6>
+                      <h6 class="m-0 font-weight-bold text-danger"> Atrasadas </h6>
                     </div>
                     <div class="body">
-                        {% for i in and %}
+                        {% if atra_afa %}
+                        <a style="padding: 0.4rem;"> Não foram iniciadas: </a>
+                        {% for i in atra_afa %}
                         <div style="padding: 0.4rem;">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -42,6 +44,31 @@
                             </div>
                         </div>
                         {% endfor %}
+                        {% endif %}
+                        {% if atra_and %}
+                        <a style="padding: 0.4rem;"> Em andamento: </a>
+                        {% for i in atra_and %}
+                        <div style="padding: 0.4rem;">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a href="{% url 'url_detTarefa' i.codigo %}" > {{ i.nome }} </a>
+                                            </div>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{ i.materia }}
+                                            </div>
+                                            <div>
+                                                <a style="font-size: 12px;"> {{ i.dataConclusao }} </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -113,8 +140,9 @@
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-success"> Finalizadas </h6>
                     </div>
-                    {% for i in fin%}
-                        <div class="card-body">
+                    <div class="body">
+                        {% for i in fin %}
+                        <div style="padding: 0.4rem;">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -133,11 +161,11 @@
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 {% endblock %}

@@ -4,6 +4,7 @@ from myapp.forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from myapp.models import *
+from datetime import date 
 
 def login_user(request):
     if request.user.is_authenticated:
@@ -45,13 +46,30 @@ def index(request):
     return render(request, "index.html")
 
 def inicio(request):
-    afazer = Tarefa.objects.filter(status = "AFA").order_by('dataConclusao')
-    andamento = Tarefa.objects.filter(status = "AND").order_by('dataConclusao')
+    data_atual = date.today()
+    afazerTd = Tarefa.objects.filter(status = "AFA").order_by('dataConclusao')
+    andamentoTd = Tarefa.objects.filter(status = "AND").order_by('dataConclusao')
     finalizada = Tarefa.objects.filter(status = "FIN").order_by('dataConclusao')
+    atrasadas_afazer = []
+    atrasadas_andamento = []
+    afazer = []
+    andamento = []
+    for i in afazerTd:
+        if i.dataConclusao < data_atual:
+            atrasadas_afazer.append(i)
+        else:
+            afazer.append(i)
+    for i in andamentoTd:
+        if i.dataConclusao < data_atual:
+            atrasadas_andamento.append(i)
+        else:
+            andamento.append(i)
     pacote = {
         "afa": afazer,
         "and": andamento,
         "fin": finalizada,
+        "atra_afa": atrasadas_afazer,
+        "atra_and": atrasadas_andamento
     }
     return render(request, "inicio.html", pacote)
 
