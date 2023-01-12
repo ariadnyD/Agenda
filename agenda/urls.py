@@ -16,6 +16,7 @@ urlpatterns = [
     path('cadastro/', cadastro, name="url_cadastro"),
     
     path('inicio/', inicio, name="url_inicio"),
+    path('pesquisaMateria/<int:id>/', pMateria, name="url_pMateria"),
 
     path('formTarefa/', formTarefa, name="url_formTarefa"),
     path('updateTarefa/<int:id>/', updateTarefa, name="url_updateTarefa"),

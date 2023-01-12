@@ -26,11 +26,13 @@ status_choice=(
     ("AND","Em andamento"),
     ("FIN", "Finalizada"),
 )
+
 class TarefaForm(django_forms.Form):
     nome = django_forms.CharField(max_length=100, label="Dê um nome a sua tarefa:")
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=280, label="Descrição:")
     dataConclusao = django_forms.DateField(label="Data para conclusão da tarefa:", required=False, widget=DateInput())
     status = django_forms.ChoiceField(choices=status_choice)
+    # esse select de matéria não consegui fazer pra pegar só do usuário atual
     materia = django_forms.ModelChoiceField(queryset=Materia.objects.all(), label="Matéria", required=False)
     arquivo = django_forms.FileField(label="Arquivo", required=False)
 
@@ -48,7 +50,6 @@ class TarefaModelForm(ModelForm):
             "arquivo": "Arquivo",
         }
 
-class MateriaForm(ModelForm):
-    class Meta:
-        model = Materia 
-        fields = ["nome", "horario"]
+class MateriaForm(django_forms.Form):
+    nome = django_forms.CharField(max_length=50, label="Nome da matéria:")
+    horario = django_forms.CharField(max_length=50, label="Horário:")
