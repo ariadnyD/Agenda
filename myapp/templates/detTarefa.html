@@ -21,7 +21,7 @@
                             <div class="dropdown-header">Opções:</div>
                             <a class="dropdown-item" href="{% url 'url_updateTarefa' tarefa.codigo %}">Editar</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="#">Excluir</a>
+                            <a class="dropdown-item text-danger" href="{% url 'url_deleteTarefa' tarefa.codigo %}">Excluir</a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <div class="w-50 m-1 p-0 col">
                             <div class="card bg-primary text-white shadow mb-2">
                                 <div class="card-body">
-                                    {%if tarefa.materia != None %}
+                                    {% if tarefa.materia != None %}
                                     <div class="text-white-50 small"><b> Matéria: </b></div>
                                     {{ tarefa.materia }}
                                     {% endif %}

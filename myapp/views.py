@@ -4,7 +4,7 @@ from myapp.forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from myapp.models import *
-from datetime import date
+from datetime import date, timedelta
 
 def permissao(request):
     if request.user.is_authenticated:
@@ -59,8 +59,10 @@ def index(request):
 def inicio(request):
     if permissao(request) == False:
         return redirect('/login')
+
     mate = Materia.objects.filter(usuario = request.user)
     search = request.GET.get('search')
+
     data_atual = date.today()
     afazerTd = Tarefa.objects.filter(status = "AFA").filter(usuario = request.user).order_by('dataConclusao')
     andamentoTd = Tarefa.objects.filter(status = "AND").filter(usuario = request.user).order_by('dataConclusao')
@@ -83,7 +85,14 @@ def inicio(request):
             atrasadas_andamento.append(i)
         else:
             andamento.append(i)
-    
+
+    data_atual_alert = date.today()
+    tarefas_user = Tarefa.objects.filter(usuario = request.user)
+    tarefa_alerta = []
+    dt = data_atual_alert + timedelta(hours=24)
+    for i in tarefas_user:
+        if i.dataConclusao == dt:
+            tarefa_alerta.append(i)
     pacote = {
         "afa": afazer,
         "and": andamento,
@@ -91,6 +100,7 @@ def inicio(request):
         "atra_afa": atrasadas_afazer,
         "atra_and": atrasadas_andamento,
         "materias": mate,
+        "alertas": tarefa_alerta
     }
     return render(request, "inicio.html", pacote)
 
